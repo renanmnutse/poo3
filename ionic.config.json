@@ -1,0 +1,7 @@
+{
+  "name": "appCarros",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
