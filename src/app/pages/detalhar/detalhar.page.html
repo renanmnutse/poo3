@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Detalhes do Carro</ion-label>
+  <ion-item>
+    <ion-label>
+      <img src={{carro.downloadURL}}>
+    </ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        Habilitar Ediçao
+      </ion-label>
+      <ion-toggle color="sucess" (ionChange) = "alterarEdicao()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="{{carro.marca}}" [(ngModel)]="marca"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="{{carro.modelo}}" [(ngModel)]="modelo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="{{carro.placa}}" [(ngModel)]="placa" maxlength="7"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="{{carro.cor}}" [(ngModel)]="cor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="{{carro.ano}}" [(ngModel)]="ano" maxlength="4"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="{{carro.kilometragem}}" [(ngModel)]="kilometragem" type="number"></ion-input>
+    </ion-item>
+    <ion-item disabled="{{edicao}}">
+      <ion-label>
+        Data da última revisão
+      </ion-label>
+      <ion-datetime-button disabled="{{edicao}}"datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime" max="{{data}}" presentation="date" [(ngModel)]="dt_ultima_revisao"></ion-datetime>
+      </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data da próxima revisão: {{carro.dt_prox_revisao}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="editar()" disabled="{{edicao}}">Salvar</ion-button>
+  <ion-button expand="block" (click)="excluir()" color="danger" disabled="{{edicao}}" >Excluir</ion-button>
+</ion-content>

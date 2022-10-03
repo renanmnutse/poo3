@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Cadastro de Carros</ion-label>
+
+  <ion-list>
+    <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-input placeholder="Marca" formControlName="marca"></ion-input>
+      </ion-item>
+      <span *ngIf="((errorControl.marca.touched) || (errorControl.marca.dirty)&& errorControl.marca.errors)">
+        <span *ngIf="errorControl.marca.errors?.required">
+          Marca é obrigatória
+        </span>
+      </span>
+    <ion-item>
+      <ion-input placeholder="Modelo" formControlName="modelo"></ion-input>
+    </ion-item>
+    <span *ngIf="((errorControl.modelo.touched) || (errorControl.modelo.dirty)&& errorControl.modelo.errors)">
+      <span *ngIf="errorControl.modelo.errors?.required">
+        Modelo é obrigatório
+      </span>
+    </span>
+    <ion-item>
+      <ion-input placeholder="Placa" formControlName="placa" maxlength="7"></ion-input>
+    </ion-item>
+    <span *ngIf="((errorControl.placa.touched) || (errorControl.placa.dirty)&& errorControl.placa.errors)">
+      <span *ngIf="errorControl.placa.errors?.required">
+        Placa é obrigatória
+      </span>
+      <span *ngIf="errorControl.placa.errors?.minlength || errorControl.placa.errors?.maxlength">
+        Placa precisa ter 7 caracteres
+      </span>
+    </span>
+    <ion-item>
+      <ion-input placeholder="Cor" formControlName="cor"></ion-input>
+    </ion-item>
+    <span *ngIf="((errorControl.cor.touched) || (errorControl.cor.dirty)&& errorControl.cor.errors)">
+      <span *ngIf="errorControl.cor.errors?.required">
+        Cor é obrigatória
+      </span>
+    </span>
+    <ion-item>
+      <ion-input placeholder="Ano de fabricação" formControlName="ano" maxlength="4"></ion-input>
+    </ion-item>
+    <span *ngIf="((errorControl.ano.touched) || (errorControl.ano.dirty)&& errorControl.ano.errors)">
+      <span *ngIf="errorControl.ano.errors?.required">
+        Ano de fabricação é obrigatório
+      </span>
+      <span *ngIf="errorControl.ano.errors?.minlength || errorControl.ano.errors?.maxlength">
+        Ano precisa ter 4 caracteres
+      </span>
+    </span>
+    <ion-item>
+      <ion-input placeholder="Kilometragem" formControlName="kilometragem" type="number"></ion-input>
+    </ion-item>
+    <span *ngIf="((errorControl.ano.touched) || (errorControl.ano.dirty)&& errorControl.ano.errors)">
+      <span *ngIf="errorControl.ano.errors?.required">
+        Kilometragem inválida
+      </span>
+    </span>
+    <ion-item>
+      <ion-label>
+        Última revisão
+      </ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime" max="{{data}}" presentation="date" formControlName="dt_ultima_revisao"></ion-datetime>
+      </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-button size="default" color="success" shape="round">
+        <input type="file" formControlName="imagem"
+          (change)="uploadFile($event.target)"   />
+      </ion-button>
+    </ion-item>
+    <ion-button expand="block" type="submit" >Cadastrar</ion-button>
+    </form>
+  </ion-list>
+</ion-content>
